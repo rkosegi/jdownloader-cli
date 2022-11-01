@@ -21,9 +21,9 @@ require (
 	github.com/rkosegi/jdownloader-go v1.0.2
 	github.com/spf13/cobra v1.5.0
 	github.com/spf13/pflag v1.0.5
-	go.uber.org/zap v1.19.1
+	go.uber.org/zap v1.23.0
 	golang.org/x/term v0.0.0-20201126162022-7de9c90e9dd1
-	gopkg.in/yaml.v3 v3.0.0-20210107192922-496545a6307b
+	gopkg.in/yaml.v3 v3.0.1
 )
 
 require (
