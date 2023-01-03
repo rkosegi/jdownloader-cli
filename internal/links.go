@@ -23,7 +23,6 @@ import (
 	"github.com/rkosegi/jdownloader-go/jdownloader"
 	"github.com/spf13/cobra"
 	"io"
-	"io/ioutil"
 	"net/url"
 	"os"
 	"strconv"
@@ -141,7 +140,7 @@ func newListLinksCommand(out io.Writer) *cobra.Command {
 }
 
 func parseLinksFromFile(file string) ([]string, error) {
-	data, err := ioutil.ReadFile(file)
+	data, err := os.ReadFile(file)
 	if err != nil {
 		return nil, err
 	}

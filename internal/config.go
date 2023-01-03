@@ -22,7 +22,6 @@ import (
 	"github.com/rkosegi/jdownloader-go/jdownloader"
 	"go.uber.org/zap"
 	"gopkg.in/yaml.v3"
-	"io/ioutil"
 	"os"
 	"time"
 )
@@ -58,7 +57,7 @@ func loadConfig() (*configData, error) {
 	if err != nil {
 		return nil, err
 	}
-	data, err := ioutil.ReadFile(cfgDir)
+	data, err := os.ReadFile(cfgDir)
 	if err != nil {
 		return nil, err
 	}
@@ -81,7 +80,7 @@ func saveConfig(cfg *configData) error {
 	if err != nil {
 		return err
 	}
-	return ioutil.WriteFile(cfgPath, data, 0o644)
+	return os.WriteFile(cfgPath, data, 0o644)
 }
 
 func getConfigPath() (string, error) {
