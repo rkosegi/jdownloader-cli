@@ -1,13 +1,13 @@
 ---
 repos:
   - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v1.2.3
+    rev: v4.4.0
     hooks:
       - id: trailing-whitespace
       - id: check-yaml
       - id: check-merge-conflict
   - repo: https://github.com/golangci/golangci-lint
-    rev: v1.49.0
+    rev: v1.52.2
     hooks:
       - id: golangci-lint
   - repo: https://github.com/dnephin/pre-commit-golang
@@ -15,4 +15,3 @@ repos:
     hooks:
       - id: go-mod-tidy
       - id: go-fmt
-
