@@ -24,8 +24,8 @@ import (
 	"go.uber.org/zap"
 	"golang.org/x/term"
 	"io"
+	"os"
 	"strings"
-	"syscall"
 )
 
 func newLoginCommand(in io.Reader, out io.Writer) *cobra.Command {
@@ -42,7 +42,7 @@ func newLoginCommand(in io.Reader, out io.Writer) *cobra.Command {
 			}
 			username = strings.TrimSpace(username)
 			fmt.Print("Enter Password: ")
-			bytePassword, err := term.ReadPassword(syscall.Stdin)
+			bytePassword, err := term.ReadPassword(int(os.Stdin.Fd()))
 			if err != nil {
 				return err
 			}
