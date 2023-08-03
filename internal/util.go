@@ -53,12 +53,7 @@ func doWithDevice(debug bool, devname string, out io.Writer, fn func(device jdow
 	if err != nil {
 		return err
 	}
-	defer func(client jdownloader.JdClient) {
-		err := client.Disconnect()
-		if err != nil {
-			fmt.Fprintf(out, "Failed to disconnect client: %v\n", err)
-		}
-	}(c)
+	defer clientCloser(c, out)
 	if len(devname) == 0 {
 		devname, err = pickDevice(c)
 		if err != nil {
@@ -70,4 +65,11 @@ func doWithDevice(debug bool, devname string, out io.Writer, fn func(device jdow
 		return err
 	}
 	return fn(dev)
+}
+
+func clientCloser(client jdownloader.JdClient, out io.Writer) {
+	err := client.Disconnect()
+	if err != nil {
+		fmt.Fprintf(out, "Failed to disconnect client: %v\n", err)
+	}
 }

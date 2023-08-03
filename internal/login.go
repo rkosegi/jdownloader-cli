@@ -58,12 +58,7 @@ func newLoginCommand(in io.Reader, out io.Writer) *cobra.Command {
 			if err != nil {
 				return err
 			}
-			defer func(client jdownloader.JdClient) {
-				err := client.Disconnect()
-				if err != nil {
-					fmt.Fprintf(out, "Failed to disconnectLater client: %v\n", err)
-				}
-			}(client)
+			defer clientCloser(client, out)
 			var cfg configData
 			cfg.Mail = &username
 			cfg.Password = &password
