@@ -17,6 +17,9 @@
 clean:
 	rm -fr build
 
+test:
+	go test -v ./...
+
 prepare:
 	test -d build || mkdir build
 
