@@ -148,7 +148,7 @@ func parseLinksFromFile(file string) ([]string, error) {
 	lines := strings.Split(string(data), "\n")
 	for _, line := range lines {
 		line = strings.TrimSpace(line)
-		if line[0] == ';' || len(line) == 0 {
+		if len(line) == 0 || line[0] == ';' {
 			continue
 		}
 		_, err = url.Parse(line)
