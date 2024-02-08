@@ -24,7 +24,7 @@ jobs:
           ref: ${{github.event.pull_request.head.sha}}
 
       - uses: actions/setup-python@v5
-      - uses: pre-commit/action@v3.0.0
+      - uses: pre-commit/action@v3.0.1
 
       - name: Build
         run: go build -v ./...
