@@ -73,3 +73,50 @@ func clientCloser(client jdownloader.JdClient, out io.Writer) {
 		fmt.Fprintf(out, "Failed to disconnect client: %v\n", err)
 	}
 }
+
+func formatSize(bytes *int64) string {
+	if bytes == nil {
+		return "N/A"
+	}
+	const unit = 1024
+	if *bytes < unit {
+		return fmt.Sprintf("%d B", *bytes)
+	}
+	div, exp := int64(unit), 0
+	for n := *bytes / unit; n >= unit; n /= unit {
+		div *= unit
+		exp++
+	}
+	return fmt.Sprintf("%.1f %ciB", float64(*bytes)/float64(div), "KMGTPE"[exp])
+}
+
+func formatEta(seconds *int64) (res string) {
+	if seconds == nil {
+		return "N/A"
+	}
+	s := *seconds
+	days, s := s/86400, s%86400
+	hrs, s := s/3600, s%3600
+	mins, s := s/60, s%60
+
+	if days > 0 {
+		res += fmt.Sprintf("%d days ", days)
+	}
+	res += fmt.Sprintf("%2.2d:%2.2d:%2.2d", hrs, mins, s)
+	return
+}
+
+func formatSpeed(speed *float64) string {
+	if speed == nil {
+		return "N/A"
+	}
+	var size = int64(*speed)
+	return fmt.Sprintf("%s/s", formatSize(&size))
+}
+
+func compressUrl(url string) string {
+	if len(url) > 80 {
+		return url[0:80]
+	}
+	return url
+}
