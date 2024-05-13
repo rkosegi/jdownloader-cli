@@ -12,16 +12,17 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-.PHONY: prepare build clean
+.PHONY: test clean build build-all
+
 
 clean:
-	rm -fr build
+	rm -fr dist
 
 test:
 	go test -v ./...
 
-prepare:
-	test -d build || mkdir build
-
 build:
-	go build -o build/jdcli cmd/cli.go
+	goreleaser build --snapshot --clean --single-target
+
+build-all:
+	goreleaser build --snapshot --clean

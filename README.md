@@ -27,3 +27,7 @@ on [jdownloader-go](https://github.com/rkosegi/jdownloader-go) library.
 
 - Login
     - `jdcli login` - configure account
+    - `jdcli logout` - discard any configured credentials
+
+- Miscellaneous
+    - `jdcli version` - display current program version
