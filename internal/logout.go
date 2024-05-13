@@ -1,5 +1,5 @@
 /*
-Copyright 2022 Richard Kosegi
+Copyright 2024 Richard Kosegi
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -18,19 +18,14 @@ package internal
 
 import (
 	"github.com/spf13/cobra"
-	"io"
 )
 
-func NewRootCommand(in io.Reader, out, err io.Writer) *cobra.Command {
-	c := &cobra.Command{
-		Use:   "jdcli",
-		Short: "jDownloader CLI tool",
+func newLogoutCommand() *cobra.Command {
+	return &cobra.Command{
+		Use:   "logout",
+		Short: "Forget configured authentication credentials",
+		RunE: func(cmd *cobra.Command, args []string) error {
+			return saveConfig(&configData{})
+		},
 	}
-	c.ResetFlags()
-	c.AddCommand(newLoginCommand(in, out))
-	c.AddCommand(newLogoutCommand())
-	c.AddCommand(newLinksCommand(out))
-	c.AddCommand(newDownloadsCommand(out))
-	c.AddCommand(newDeviceCommand(out))
-	return c
 }
