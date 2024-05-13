@@ -32,5 +32,6 @@ func NewRootCommand(in io.Reader, out, err io.Writer) *cobra.Command {
 	c.AddCommand(newLinksCommand(out))
 	c.AddCommand(newDownloadsCommand(out))
 	c.AddCommand(newDeviceCommand(out))
+	c.AddCommand(newVersionCommand(out))
 	return c
 }
