@@ -14,10 +14,10 @@ on [jdownloader-go](https://github.com/rkosegi/jdownloader-go) library.
 
     - Links - Manages download links
         - `jdcli download link list` - list links
-        - `jdcli download link list` - remove link(s) from downloader
+        - `jdcli download link rm` - remove link(s) from downloader
 
     - Packages - Manages download packages
-        - `jdcli download link list` - list links
+        - `jdcli download package list` - list links
 
 
 - Link collector
