@@ -14,8 +14,7 @@
 
 module github.com/rkosegi/jdownloader-cli
 
-go 1.21
-toolchain go1.23.7
+go 1.23.0
 
 require (
 	github.com/olekukonko/tablewriter v0.0.5
