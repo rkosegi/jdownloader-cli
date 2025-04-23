@@ -32,6 +32,10 @@ func addDebugFlag(fs *pflag.FlagSet, target *bool) {
 	fs.BoolVar(target, "debug", *target, "Debugging flag")
 }
 
+func addJsonFlag(fs *pflag.FlagSet, target *bool) {
+	fs.BoolVar(target, "json", *target, "JSON output flag")
+}
+
 func pickDevice(client jdownloader.JdClient) (string, error) {
 	devs, err := client.ListDevices()
 	if err != nil {

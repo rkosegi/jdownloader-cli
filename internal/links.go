@@ -17,6 +17,7 @@ limitations under the License.
 package internal
 
 import (
+	"encoding/json"
 	"errors"
 	"fmt"
 	"github.com/olekukonko/tablewriter"
@@ -98,7 +99,11 @@ func newAddLinksCommand(out io.Writer) *cobra.Command {
 }
 
 func newListLinksCommand(out io.Writer) *cobra.Command {
-	var data commonData
+	type listData struct {
+		commonData
+		json bool
+	}
+	var data listData
 	c := &cobra.Command{
 		Use:   "list",
 		Short: "List all links in LinkGrabber",
@@ -108,6 +113,16 @@ func newListLinksCommand(out io.Writer) *cobra.Command {
 				if err != nil {
 					return err
 				}
+
+				if data.json {
+					jsonObj, err := json.MarshalIndent(links, "", "    ")
+					if err != nil {
+						return err
+					}
+					fmt.Printf("%s\n", jsonObj)
+					return nil
+				}
+
 				if len(*links) > 0 {
 					tbl := tablewriter.NewWriter(os.Stdout)
 					tbl.SetHeader(clCols)
@@ -136,6 +151,7 @@ func newListLinksCommand(out io.Writer) *cobra.Command {
 	}
 	addDebugFlag(c.Flags(), &data.debug)
 	addDeviceFlag(c.Flags(), &data.device)
+	addJsonFlag(c.Flags(), &data.json)
 	return c
 }
 

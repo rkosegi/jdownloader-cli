@@ -17,6 +17,7 @@ limitations under the License.
 package internal
 
 import (
+	"encoding/json"
 	"errors"
 	"fmt"
 	"io"
@@ -64,7 +65,11 @@ func newDownloadLinksCommand(out io.Writer) *cobra.Command {
 }
 
 func newDownloadLinkListCommand(out io.Writer) *cobra.Command {
-	var data commonData
+	type newData struct {
+		commonData
+		json   bool
+	}
+	var data newData
 	c := &cobra.Command{
 		Use:   "list",
 		Short: "List downloads",
@@ -74,6 +79,16 @@ func newDownloadLinkListCommand(out io.Writer) *cobra.Command {
 				if err != nil {
 					return err
 				}
+
+				if data.json {
+					jsonObj, err := json.MarshalIndent(links, "", "    ")
+					if err != nil {
+						return err
+					}
+					fmt.Printf("%s\n", jsonObj)
+					return nil
+				}
+
 				tbl := tablewriter.NewWriter(os.Stdout)
 				tbl.SetHeader(dlCols)
 
@@ -96,6 +111,7 @@ func newDownloadLinkListCommand(out io.Writer) *cobra.Command {
 	}
 	addDebugFlag(c.Flags(), &data.debug)
 	addDeviceFlag(c.Flags(), &data.device)
+	addJsonFlag(c.Flags(), &data.json)
 	return c
 }
 
@@ -134,7 +150,11 @@ func newDownloadPackageCommand(out io.Writer) *cobra.Command {
 }
 
 func newDownloadPackageListCommand(out io.Writer) *cobra.Command {
-	var data commonData
+	type newData struct {
+		commonData
+		json   bool
+	}
+	var data newData
 	c := &cobra.Command{
 		Use:   "list",
 		Short: "List download packages",
@@ -144,6 +164,16 @@ func newDownloadPackageListCommand(out io.Writer) *cobra.Command {
 				if err != nil {
 					return err
 				}
+
+				if data.json {
+					jsonObj, err := json.MarshalIndent(pkgs, "", "    ")
+					if err != nil {
+						return err
+					}
+					fmt.Printf("%s\n", jsonObj)
+					return nil
+				}
+
 				tbl := tablewriter.NewWriter(os.Stdout)
 				tbl.SetHeader(pkgCols)
 
@@ -165,6 +195,7 @@ func newDownloadPackageListCommand(out io.Writer) *cobra.Command {
 	}
 	addDebugFlag(c.Flags(), &data.debug)
 	addDeviceFlag(c.Flags(), &data.device)
+	addJsonFlag(c.Flags(), &data.json)
 	return c
 }
 

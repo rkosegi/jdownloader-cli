@@ -17,6 +17,7 @@ limitations under the License.
 package internal
 
 import (
+	"encoding/json"
 	"fmt"
 	"github.com/olekukonko/tablewriter"
 	"github.com/rkosegi/jdownloader-go/jdownloader"
@@ -39,6 +40,7 @@ func newDeviceCommand(out io.Writer) *cobra.Command {
 func newDeviceListCommand(out io.Writer) *cobra.Command {
 	type listData struct {
 		debug bool
+		json  bool
 	}
 	var data listData
 	c := &cobra.Command{
@@ -65,6 +67,15 @@ func newDeviceListCommand(out io.Writer) *cobra.Command {
 				return err
 			}
 
+			if data.json {
+				jsonObj, err := json.MarshalIndent(devs, "", "    ")
+				if err != nil {
+					return err
+				}
+				fmt.Printf("%s\n", jsonObj)
+				return nil
+			}
+
 			tbl := tablewriter.NewWriter(os.Stdout)
 			tbl.SetHeader(devCols)
 			for _, dev := range *devs {
@@ -80,5 +91,6 @@ func newDeviceListCommand(out io.Writer) *cobra.Command {
 		},
 	}
 	addDebugFlag(c.Flags(), &data.debug)
+	addJsonFlag(c.Flags(), &data.json)
 	return c
 }
