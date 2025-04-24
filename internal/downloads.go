@@ -67,7 +67,7 @@ func newDownloadLinksCommand(out io.Writer) *cobra.Command {
 func newDownloadLinkListCommand(out io.Writer) *cobra.Command {
 	type newData struct {
 		commonData
-		json   bool
+		json bool
 	}
 	var data newData
 	c := &cobra.Command{
@@ -152,7 +152,7 @@ func newDownloadPackageCommand(out io.Writer) *cobra.Command {
 func newDownloadPackageListCommand(out io.Writer) *cobra.Command {
 	type newData struct {
 		commonData
-		json   bool
+		json bool
 	}
 	var data newData
 	c := &cobra.Command{
