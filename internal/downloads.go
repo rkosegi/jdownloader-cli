@@ -90,7 +90,7 @@ func newDownloadLinkListCommand(out io.Writer) *cobra.Command {
 				}
 
 				tbl := tablewriter.NewWriter(os.Stdout)
-				tbl.SetHeader(dlCols)
+				tbl.Header(dlCols)
 
 				for _, link := range *links {
 					row := make([]string, len(dlCols))
@@ -104,8 +104,7 @@ func newDownloadLinkListCommand(out io.Writer) *cobra.Command {
 					row[5] = formatSize(link.BytesTotal)
 					tbl.Append(row)
 				}
-				tbl.Render()
-				return nil
+				return tbl.Render()
 			})
 		},
 	}
@@ -175,7 +174,7 @@ func newDownloadPackageListCommand(out io.Writer) *cobra.Command {
 				}
 
 				tbl := tablewriter.NewWriter(os.Stdout)
-				tbl.SetHeader(pkgCols)
+				tbl.Header(pkgCols)
 
 				for _, pkg := range *pkgs {
 					row := make([]string, len(pkgCols))
@@ -188,8 +187,7 @@ func newDownloadPackageListCommand(out io.Writer) *cobra.Command {
 					row[4] = formatSize(pkg.BytesTotal)
 					tbl.Append(row)
 				}
-				tbl.Render()
-				return nil
+				return tbl.Render()
 			})
 		},
 	}

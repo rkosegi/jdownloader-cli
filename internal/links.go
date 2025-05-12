@@ -20,14 +20,15 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
-	"github.com/olekukonko/tablewriter"
-	"github.com/rkosegi/jdownloader-go/jdownloader"
-	"github.com/spf13/cobra"
 	"io"
 	"net/url"
 	"os"
 	"strconv"
 	"strings"
+
+	"github.com/olekukonko/tablewriter"
+	"github.com/rkosegi/jdownloader-go/jdownloader"
+	"github.com/spf13/cobra"
 )
 
 var (
@@ -125,7 +126,7 @@ func newListLinksCommand(out io.Writer) *cobra.Command {
 
 				if len(*links) > 0 {
 					tbl := tablewriter.NewWriter(os.Stdout)
-					tbl.SetHeader(clCols)
+					tbl.Header(clCols)
 
 					for _, link := range *links {
 						row := make([]string, len(clCols))
@@ -141,7 +142,7 @@ func newListLinksCommand(out io.Writer) *cobra.Command {
 						}
 						tbl.Append(row)
 					}
-					tbl.Render()
+					return tbl.Render()
 				} else {
 					fmt.Fprintf(out, "No links\n")
 				}
