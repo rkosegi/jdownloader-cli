@@ -19,11 +19,12 @@ package internal
 import (
 	"encoding/json"
 	"fmt"
+	"io"
+	"os"
+
 	"github.com/olekukonko/tablewriter"
 	"github.com/rkosegi/jdownloader-go/jdownloader"
 	"github.com/spf13/cobra"
-	"io"
-	"os"
 )
 
 var devCols = []string{"ID", "Type", "Name", "Status"}
@@ -77,7 +78,7 @@ func newDeviceListCommand(out io.Writer) *cobra.Command {
 			}
 
 			tbl := tablewriter.NewWriter(os.Stdout)
-			tbl.SetHeader(devCols)
+			tbl.Header(devCols)
 			for _, dev := range *devs {
 				row := make([]string, len(devCols))
 				row[0] = dev.Id
@@ -86,8 +87,7 @@ func newDeviceListCommand(out io.Writer) *cobra.Command {
 				row[3] = dev.Status
 				tbl.Append(row)
 			}
-			tbl.Render()
-			return nil
+			return tbl.Render()
 		},
 	}
 	addDebugFlag(c.Flags(), &data.debug)
