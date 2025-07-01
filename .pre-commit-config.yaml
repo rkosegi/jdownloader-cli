@@ -21,7 +21,7 @@ repos:
       - id: check-added-large-files
       - id: end-of-file-fixer
   - repo: https://github.com/golangci/golangci-lint
-    rev: v2.1.6
+    rev: v2.2.1
     hooks:
       - id: golangci-lint
   - repo: https://github.com/dnephin/pre-commit-golang
