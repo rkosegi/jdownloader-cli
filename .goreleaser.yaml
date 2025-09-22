@@ -1,4 +1,5 @@
 ---
+version: 2
 project_name: jdownloader-cli
 release:
   github:
@@ -7,20 +8,6 @@ release:
   name_template: '{{.Tag}}'
 builds:
   - id: jdownloader-cli
-    goos:
-      - linux
-      - darwin
-      - windows
-    goarch:
-      - amd64
-      - arm64
-    goarm:
-      - "6"
-      - "7"
-    gomips:
-      - hardfloat
-    goamd64:
-      - v1
     targets:
       - linux_amd64_v1
       - linux_arm64
@@ -38,5 +25,3 @@ builds:
       - -X github.com/rkosegi/jdownloader-cli/internal.Branch={{.Tag}}
       - -X github.com/rkosegi/jdownloader-cli/internal.BuildDate={{.Date}}
       - -X github.com/rkosegi/jdownloader-cli/internal.BuildUser={{.Env.USER}}
-archives:
-  - format: binary
