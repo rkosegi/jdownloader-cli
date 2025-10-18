@@ -19,9 +19,12 @@ package internal
 import (
 	"errors"
 	"fmt"
-	"github.com/rkosegi/jdownloader-go/jdownloader"
-	"github.com/spf13/pflag"
 	"io"
+	"log/slog"
+
+	"github.com/rkosegi/jdownloader-go/jdownloader"
+	xlog "github.com/rkosegi/slog-config"
+	"github.com/spf13/pflag"
 )
 
 func addDeviceFlag(fs *pflag.FlagSet, target *string) {
@@ -123,4 +126,12 @@ func compressUrl(url string) string {
 		return url[0:80]
 	}
 	return url
+}
+
+func getLogger(debug bool) *slog.Logger {
+	level := "info"
+	if debug {
+		level = "debug"
+	}
+	return xlog.MustNew(level, xlog.LogFormatLogFmt).Logger()
 }

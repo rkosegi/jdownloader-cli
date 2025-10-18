@@ -17,9 +17,10 @@ limitations under the License.
 package internal
 
 import (
+	"testing"
+
 	"github.com/rkosegi/jdownloader-go/jdownloader"
 	"github.com/stretchr/testify/assert"
-	"testing"
 )
 
 func TestPickDevice(t *testing.T) {

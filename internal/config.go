@@ -19,11 +19,13 @@ package internal
 import (
 	"errors"
 	"fmt"
-	"github.com/rkosegi/jdownloader-go/jdownloader"
-	"go.uber.org/zap"
-	"gopkg.in/yaml.v3"
+	"log/slog"
 	"os"
 	"time"
+
+	"github.com/rkosegi/jdownloader-go/jdownloader"
+	xlog "github.com/rkosegi/slog-config"
+	"gopkg.in/yaml.v3"
 )
 
 type configData struct {
@@ -37,16 +39,15 @@ func getClient(debug bool) (jdownloader.JdClient, error) {
 	if err != nil {
 		return nil, err
 	}
-	var logger *zap.Logger
+	var (
+		logger *slog.Logger
+	)
+	level := "info"
 	if debug {
-		logger, err = zap.NewDevelopment()
-	} else {
-		logger, err = zap.NewProduction()
+		level = "debug"
 	}
-	if err != nil {
-		return nil, err
-	}
-	return jdownloader.NewClient(*cfg.Mail, *cfg.Password, logger.Sugar(),
+	logger = xlog.MustNew(level, xlog.LogFormatLogFmt).Logger()
+	return jdownloader.NewClient(*cfg.Mail, *cfg.Password, logger,
 		jdownloader.ClientOptionTimeout(30*time.Second),
 		jdownloader.ClientOptionAppKey("jdcli")), nil
 }

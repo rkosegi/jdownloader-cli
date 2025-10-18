@@ -17,8 +17,9 @@ limitations under the License.
 package internal
 
 import (
-	"github.com/stretchr/testify/assert"
 	"testing"
+
+	"github.com/stretchr/testify/assert"
 )
 
 func TestParseLinksFromFile(t *testing.T) {

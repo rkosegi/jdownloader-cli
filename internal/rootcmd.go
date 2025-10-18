@@ -17,8 +17,9 @@ limitations under the License.
 package internal
 
 import (
-	"github.com/spf13/cobra"
 	"io"
+
+	"github.com/spf13/cobra"
 )
 
 func NewRootCommand(in io.Reader, out, err io.Writer) *cobra.Command {

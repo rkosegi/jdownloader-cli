@@ -17,8 +17,9 @@ limitations under the License.
 package main
 
 import (
-	"github.com/rkosegi/jdownloader-cli/internal"
 	"os"
+
+	"github.com/rkosegi/jdownloader-cli/internal"
 )
 
 func main() {

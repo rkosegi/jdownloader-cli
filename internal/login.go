@@ -19,13 +19,13 @@ package internal
 import (
 	"bufio"
 	"fmt"
-	"github.com/rkosegi/jdownloader-go/jdownloader"
-	"github.com/spf13/cobra"
-	"go.uber.org/zap"
-	"golang.org/x/term"
 	"io"
 	"os"
 	"strings"
+
+	"github.com/rkosegi/jdownloader-go/jdownloader"
+	"github.com/spf13/cobra"
+	"golang.org/x/term"
 )
 
 func newLoginCommand(in io.Reader, out io.Writer) *cobra.Command {
@@ -35,7 +35,7 @@ func newLoginCommand(in io.Reader, out io.Writer) *cobra.Command {
 		Short: "Login into account and safe credentials into config file",
 		RunE: func(cmd *cobra.Command, args []string) error {
 			reader := bufio.NewReader(in)
-			fmt.Fprint(out, "Enter username/email: ")
+			_, _ = fmt.Fprint(out, "Enter username/email: ")
 			username, err := reader.ReadString('\n')
 			if err != nil {
 				return err
@@ -47,13 +47,8 @@ func newLoginCommand(in io.Reader, out io.Writer) *cobra.Command {
 				return err
 			}
 			password := strings.TrimSpace(string(bytePassword))
-			var logger *zap.Logger
-			if debug {
-				logger, _ = zap.NewDevelopment()
-			} else {
-				logger, _ = zap.NewProduction()
-			}
-			client := jdownloader.NewClient(username, password, logger.Sugar())
+			logger := getLogger(debug)
+			client := jdownloader.NewClient(username, password, logger)
 			err = client.Connect()
 			if err != nil {
 				return err
