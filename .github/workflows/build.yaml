@@ -33,7 +33,7 @@ jobs:
           go-version: '1.25'
 
       - name: Check out code
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
         with:
           ref: ${{github.event.pull_request.head.sha}}
 
