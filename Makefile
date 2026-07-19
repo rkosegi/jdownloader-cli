@@ -14,6 +14,7 @@
 
 .PHONY: test clean build build-all
 
+.DEFAULT_GOAL := build
 
 clean:
 	rm -fr dist
