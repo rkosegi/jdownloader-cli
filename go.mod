@@ -21,7 +21,7 @@ require (
 	github.com/rkosegi/jdownloader-go v1.1.0-rc1.0.20260719061839-2033bee0ce95
 	github.com/rkosegi/slog-config v0.0.1
 	github.com/spf13/cobra v1.10.2
-	github.com/spf13/pflag v1.0.10
+	github.com/spf13/pflag v1.1.0
 	github.com/stretchr/testify v1.12.1
 	golang.org/x/term v0.47.0
 	gopkg.in/yaml.v3 v3.0.1
