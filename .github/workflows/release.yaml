@@ -13,34 +13,17 @@
 # limitations under the License.
 ---
 name: Release binary
-
 on:
   push:
     tags:
       - v*
   workflow_dispatch:
+
 permissions:
-  contents: write
+  contents: read
 
 jobs:
-  goreleaser:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Check out code
-        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
-        with:
-          fetch-depth: 0
-
-      - name: Set up Go
-        uses: actions/setup-go@b7ad1dad31e06c5925ef5d2fc7ad053ef454303e # v7.0.0
-        with:
-          go-version-file: go.mod
-
-      - name: Run GoReleaser
-        uses: goreleaser/goreleaser-action@a4f02ab5355a589de60d917a659ce617ed19b3de # v7.3.0
-        with:
-          distribution: goreleaser
-          version: latest
-          args: release --clean
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  release:
+    permissions:
+      contents: write
+    uses: rkosegi/github-workflows/.github/workflows/go-release.yaml@d3985e38f8555b135c8e288a6dd843b5ed955a3b # v0.0.12
