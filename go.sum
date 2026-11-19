@@ -25,8 +25,8 @@ github.com/olekukonko/tablewriter v1.1.5 h1:4LoZSfMySpMQY3PT8RWJsJeuEuMIoo9xGRgv
 github.com/olekukonko/tablewriter v1.1.5/go.mod h1:+kedxuyTtgoZLwif3P1Em4hARJs+mVnzKxmsCL/C5RY=
 github.com/prometheus/common v0.73.1 h1:SZWh/j4AvhCdhX8jvYSnxvPxhWlC9QZkjJ+tOrEr7kU=
 github.com/prometheus/common v0.73.1/go.mod h1:I9aA/Ukz9s1olOobh8KtCkU7B1mQPQsB9UvQPsUQ1Dk=
-github.com/rkosegi/jdownloader-go v1.1.0-rc1.0.20260719061839-2033bee0ce95 h1:o7a+ZmD8l+NqfqKjps4g0RjG64DzdVzkr7AN97Fas5w=
-github.com/rkosegi/jdownloader-go v1.1.0-rc1.0.20260719061839-2033bee0ce95/go.mod h1:qxRCw9nhM730uZkrdAMUcMrl6ZXEFXL/YmzoCgSjC1Y=
+github.com/rkosegi/jdownloader-go v1.1.0-rc1.0.20261114220545-0d2dee2894c3 h1:zCLLQjf2IQPkxBEKSTWac3JGb+Vom6rEKdKWcKvF3zU=
+github.com/rkosegi/jdownloader-go v1.1.0-rc1.0.20261114220545-0d2dee2894c3/go.mod h1:uXtPaOaWKzSj315q/5DJ4fCmNMDOlbD8KY1KDIjmkf0=
 github.com/rkosegi/slog-config v0.0.2 h1:tESsmU0Ftli9ojJSNYtaabFjM+Fy6oCEEbdgS/qmbq0=
 github.com/rkosegi/slog-config v0.0.2/go.mod h1:XorUpWz0n/RKkacPZSlIjxc9LzdVj+EDElKBpB2KKLs=
 github.com/russross/blackfriday/v2 v2.1.0/go.mod h1:+Rmxgy9KzJVeS9/2gXHxylqXiyQDYRxCVz55jmeOWTM=
