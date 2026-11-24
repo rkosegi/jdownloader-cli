@@ -26,4 +26,4 @@ jobs:
   release:
     permissions:
       contents: write
-    uses: rkosegi/github-workflows/.github/workflows/go-release.yaml@d3985e38f8555b135c8e288a6dd843b5ed955a3b # v0.0.12
+    uses: rkosegi/github-workflows/.github/workflows/go-release.yaml@9c2fa7903f12c13f9d0d391583de72f671bc8d9a # v0.0.13
