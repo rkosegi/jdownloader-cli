@@ -18,7 +18,7 @@ go 1.27
 
 require (
 	github.com/olekukonko/tablewriter v1.1.5
-	github.com/rkosegi/jdownloader-go v1.1.0-rc1.0.20261114220545-0d2dee2894c3
+	github.com/rkosegi/jdownloader-go v1.1.0
 	github.com/rkosegi/slog-config v0.0.2
 	github.com/spf13/cobra v1.10.2
 	github.com/spf13/pflag v1.1.0
